@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 
-function App() {
+import Layout from "./hoc/Layout/Layout";
+// import DrinksFinder from "./containers/DrinksFinder/DrinksFinder";
+import DrinksBuilder from "./containers/DrinksBuilder/DrinksBuilder";
+import Auth from "./containers/Auth/Auth";
+
+const App = () => {
+
+  let routes = (
+    <Switch>
+      <Route path="/auth" component={Auth} />
+      {/* <Route path="/drinks-builder" component={DrinksBuilder} /> */}
+      <Route path="/" exact component={DrinksBuilder} />
+      <Redirect to="/" />
+    </Switch>
+  )
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>{routes}</Layout>
   );
 }
 
-export default App;
+export default withRouter(App);
