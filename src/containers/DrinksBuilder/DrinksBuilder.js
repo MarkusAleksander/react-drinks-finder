@@ -9,18 +9,17 @@ import IngredientManager from "../../components/Ingredients/IngredientManager/In
 
 const DrinksBuilder = () => {
 
-
     const handleAddDrink = (drink) => {
         console.log(drink);
     }
 
     return (
         <Auxillary>
-            <Column>
-                <IngredientManager />
-                <DrinksForm onAddDrink={handleAddDrink} />
-                {/* <DrinkRecipes /> */}
-            </Column>
+                <Column>
+                    <IngredientManager />
+                    <DrinksForm onAddDrink={handleAddDrink} />
+                    {/* <DrinkRecipes /> */}
+                </Column>
         </Auxillary>
     )
 }

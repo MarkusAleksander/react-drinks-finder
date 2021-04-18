@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 
 import Layout from "./hoc/Layout/Layout";
@@ -8,14 +8,38 @@ import Auth from "./containers/Auth/Auth";
 
 import { IngredientContext } from "./context/ingredients-context";
 
+import useHttp from "./hooks/http";
+
+import URL_CONFIG from "./config/urls";
+
 const App = () => {
 
-  const ingContext = useContext(IngredientContext);
+  const [ingredients, setIngredient] = useState([]);
+
+  const {sendRequest, clear, isLoading, error, responseData } = useHttp();
 
   useEffect(() => {
     console.log("use effect");
-    ingContext.getIngredients();
-  });
+    sendRequest(URL_CONFIG.INGREDIENTS.GET, "GET", null, "GET_INGREDIENTS");
+  }, [sendRequest]);
+
+  useEffect(() => {
+    console.log("setting data");
+
+    const ingredients = [];
+
+    for(let ingredient in responseData) {
+      ingredients.push({
+        id: ingredient,
+        ...responseData[ingredient]
+      }
+      )
+    }
+
+    console.log(ingredients);
+
+    setIngredient(() => ingredients);
+  }, [responseData]);
 
   let routes = (
     <Switch>
@@ -27,7 +51,9 @@ const App = () => {
   )
 
   return (
-    <Layout>{routes}</Layout>
+    <IngredientContext.Provider value={{ingredients: ingredients}}>
+      <Layout>{routes}</Layout>
+    </IngredientContext.Provider>
   );
 }
 

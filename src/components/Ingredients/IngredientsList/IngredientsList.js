@@ -1,6 +1,8 @@
-import React, { useReducer } from "react";
+import React, { useContext } from "react";
 
 import IngredientItem from "./../IngredientItem/IngredientItem";
+
+import { IngredientContext } from "./../../../context/ingredients-context";
 
 // const ingredientReducer = (currentIngredients, action) => {
 //     switch (action.type) {
@@ -19,10 +21,12 @@ const IngredientsList = (props) => {
 
     // const [ingredients, dispatchIngredients] = useReducer(ingredientReducer, []);
 
+    const ingredients = useContext(IngredientContext);
+
     return (
         <ul className="ingredients-list">
             {
-                props.ingredients.map((ingredient) => {
+                ingredients.ingredients && ingredients.ingredients.map((ingredient) => {
                     return (
                         <li
                             key={ingredient.id}
