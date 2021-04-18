@@ -7,9 +7,9 @@ const ENDPOINTS = {
         DELETE: `${FIREBASE_ENDPOINT}ingredients/`,
     },
     DRINKS: {
-        GET: `${FIREBASE_ENDPOINT}ingredients.json`,
-        POST: `${FIREBASE_ENDPOINT}ingredients.json`,
-        DELETE: `${FIREBASE_ENDPOINT}ingredients.json`,
+        GET: `${FIREBASE_ENDPOINT}drinks.json`,
+        POST: `${FIREBASE_ENDPOINT}drinks.json`,
+        DELETE: `${FIREBASE_ENDPOINT}drinks/`,
     }
 }
 

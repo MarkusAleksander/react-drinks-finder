@@ -7,6 +7,7 @@ import DrinksBuilder from "./containers/DrinksBuilder/DrinksBuilder";
 import Auth from "./containers/Auth/Auth";
 
 import IngredientContextProvider from "./context/ingredients-context";
+import DrinksContextProvider from "./context/drinks-context";
 
 const App = () => {
 
@@ -24,11 +25,12 @@ const App = () => {
 	// } 
 
 	return (
-		<IngredientContextProvider>
-			{/* {error && <Modal onclick={() => clearError()} >{error}</Modal>} */}
-			<Layout>{routes}</Layout>
-		</IngredientContextProvider>
-
+		<DrinksContextProvider>
+			<IngredientContextProvider>
+				{/* {error && <Modal onclick={() => clearError()} >{error}</Modal>} */}
+				<Layout>{routes}</Layout>
+			</IngredientContextProvider>
+		</DrinksContextProvider>
 	);
 }
 

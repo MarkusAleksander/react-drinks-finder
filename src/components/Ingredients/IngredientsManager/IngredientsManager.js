@@ -1,11 +1,11 @@
 import React from "react";
 
-import Auxillary from "./../../../hoc/Auxillary/Auxillary";
+import Auxillary from "../../../hoc/Auxillary/Auxillary";
 
 import IngredientForm from "../IngredientsForm/IngredientsForm";
 import IngredientList from "../IngredientsList/IngredientsList";
 
-const IngredientManager = () => {
+const IngredientsManager = () => {
 
     return (
         <Auxillary>
@@ -18,4 +18,4 @@ const IngredientManager = () => {
     )
 }
 
-export default IngredientManager;
+export default IngredientsManager;

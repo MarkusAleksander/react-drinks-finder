@@ -32,7 +32,8 @@ const IngredientsForm = (props) => {
         <Card>
             <form onSubmit={submitHandler}>
                 <Input
-                    name="Ingredient"
+                    labelText={"Ingredient:"}
+                    name="ingredient"
                     value={ingredient}
                     onchange={
                         event => setIngredient(event.target.value)

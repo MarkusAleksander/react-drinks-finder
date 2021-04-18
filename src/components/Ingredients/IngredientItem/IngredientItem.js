@@ -1,8 +1,14 @@
 import React from "react";
 
+import Card from "./../../UI/Card/Card";
+
 const IngredientItem = (props) => {
     return (
-        <div onClick={() => { props.onclick(props.ingredient.id) }}>{props.ingredient.ingredient}</div>
+        <Card>
+            <div onClick={() => { props.onclick(props.ingredient.id) }}>
+                <p>{props.ingredient.ingredient}</p>
+            </div>
+        </Card>
     )
 }
 
