@@ -6,20 +6,23 @@ import { IngredientContext } from "./../../../context/ingredients-context";
 
 import Auxillary from "./../../../hoc/Auxillary/Auxillary";
 
+import Button from "./../../UI/Button/Button";
+
 const IngredientsList = (props) => {
-    const ingredients = useContext(IngredientContext);
+    const ingredientsContext = useContext(IngredientContext);
 
     return (
         <Auxillary>
-            {ingredients.isLoading && <span>loading ingredients...</span>}
+            {ingredientsContext.isLoading && <span>loading ingredients...</span>}
             <ul className="ingredients-list">
                 {
-                    ingredients.ingredients && ingredients.ingredients.map((ingredient) => {
+                    ingredientsContext.ingredients && ingredientsContext.ingredients.map((ingredient) => {
                         return (
                             <li
                                 key={ingredient.id}
                             >
                                 <IngredientItem ingredient={ingredient} onclick={props.onclick} />
+                                <Button onclick={ingredientsContext.removeIngredient.bind(null, ingredient.id)}>Remove</Button>
                             </li>
                         )
                     })

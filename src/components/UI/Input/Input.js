@@ -5,6 +5,7 @@ const Input = (props) => {
         <input
             name={props.name}
             type={props.type}
+            value={props.value}
             onChange={props.onchange}
         />
     )

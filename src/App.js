@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 
 import Layout from "./hoc/Layout/Layout";
@@ -6,38 +6,9 @@ import Layout from "./hoc/Layout/Layout";
 import DrinksBuilder from "./containers/DrinksBuilder/DrinksBuilder";
 import Auth from "./containers/Auth/Auth";
 
-import IngredientContextProvider, { IngredientContext } from "./context/ingredients-context";
-
-// import useHttp from "./hooks/http";
-
-import Modal from "./components/UI/Modal/Modal";
-
-// import ENDPOINTS from "./config/urls";
+import IngredientContextProvider from "./context/ingredients-context";
 
 const App = () => {
-
-	// const [ingredients, setIngredient] = useState([]);
-
-	// const {sendRequest, clear, isLoading, error, responseData } = useHttp();
-
-	// useEffect(() => {
-	// 	sendRequest(ENDPOINTS.INGREDIENTS.GET, "GET", null, "GET_INGREDIENTS");
-	// }, [sendRequest]);
-
-	// useEffect(() => {
-	// 	const ingredients = [];
-
-	// 	for(let ingredient in responseData) {
-	// 		ingredients.push({
-	// 			id: ingredient,
-	// 			...responseData[ingredient]
-	// 		})
-	// 	}
-
-	// 	console.log(ingredients);
-
-	// 	setIngredient(() => ingredients);
-	// }, [responseData]);
 
 	let routes = (
 		<Switch>
