@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 
 import Layout from "./hoc/Layout/Layout";
@@ -6,7 +6,16 @@ import Layout from "./hoc/Layout/Layout";
 import DrinksBuilder from "./containers/DrinksBuilder/DrinksBuilder";
 import Auth from "./containers/Auth/Auth";
 
+import { IngredientContext } from "./context/ingredients-context";
+
 const App = () => {
+
+  const ingContext = useContext(IngredientContext);
+
+  useEffect(() => {
+    console.log("use effect");
+    ingContext.getIngredients();
+  });
 
   let routes = (
     <Switch>

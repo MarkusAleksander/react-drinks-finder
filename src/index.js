@@ -6,12 +6,16 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from "react-router-dom";
 
+import IngredientContextProvider from "./context/ingredients-context";
+
 const app = (
-  <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>
+  <IngredientContextProvider>
+    <BrowserRouter>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>
+  </IngredientContextProvider>
 )
 
 ReactDOM.render(
