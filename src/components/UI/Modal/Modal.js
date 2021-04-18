@@ -2,7 +2,7 @@ import React from "react";
 
 const Modal = (props) => {
     return (
-        <div className="modal">{props.children}</div>
+        <div className="modal" onClick={props.onclick}>{props.children}</div>
     )
 }
 

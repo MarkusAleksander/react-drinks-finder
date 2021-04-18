@@ -6,55 +6,59 @@ import Layout from "./hoc/Layout/Layout";
 import DrinksBuilder from "./containers/DrinksBuilder/DrinksBuilder";
 import Auth from "./containers/Auth/Auth";
 
-import { IngredientContext } from "./context/ingredients-context";
+import IngredientContextProvider, { IngredientContext } from "./context/ingredients-context";
 
-import useHttp from "./hooks/http";
+// import useHttp from "./hooks/http";
 
-import URL_CONFIG from "./config/urls";
+import Modal from "./components/UI/Modal/Modal";
+
+// import ENDPOINTS from "./config/urls";
 
 const App = () => {
 
-  const [ingredients, setIngredient] = useState([]);
+	// const [ingredients, setIngredient] = useState([]);
 
-  const {sendRequest, clear, isLoading, error, responseData } = useHttp();
+	// const {sendRequest, clear, isLoading, error, responseData } = useHttp();
 
-  useEffect(() => {
-    console.log("use effect");
-    sendRequest(URL_CONFIG.INGREDIENTS.GET, "GET", null, "GET_INGREDIENTS");
-  }, [sendRequest]);
+	// useEffect(() => {
+	// 	sendRequest(ENDPOINTS.INGREDIENTS.GET, "GET", null, "GET_INGREDIENTS");
+	// }, [sendRequest]);
 
-  useEffect(() => {
-    console.log("setting data");
+	// useEffect(() => {
+	// 	const ingredients = [];
 
-    const ingredients = [];
+	// 	for(let ingredient in responseData) {
+	// 		ingredients.push({
+	// 			id: ingredient,
+	// 			...responseData[ingredient]
+	// 		})
+	// 	}
 
-    for(let ingredient in responseData) {
-      ingredients.push({
-        id: ingredient,
-        ...responseData[ingredient]
-      }
-      )
-    }
+	// 	console.log(ingredients);
 
-    console.log(ingredients);
+	// 	setIngredient(() => ingredients);
+	// }, [responseData]);
 
-    setIngredient(() => ingredients);
-  }, [responseData]);
+	let routes = (
+		<Switch>
+			<Route path="/auth" component={Auth} />
+			{/* <Route path="/drinks-builder" component={DrinksBuilder} /> */}
+			<Route path="/" exact component={DrinksBuilder} />
+			<Redirect to="/" />
+		</Switch>
+	)
 
-  let routes = (
-    <Switch>
-      <Route path="/auth" component={Auth} />
-      {/* <Route path="/drinks-builder" component={DrinksBuilder} /> */}
-      <Route path="/" exact component={DrinksBuilder} />
-      <Redirect to="/" />
-    </Switch>
-  )
+	// const clearError = () => {
+	// 	// clear();
+	// } 
 
-  return (
-    <IngredientContext.Provider value={{ingredients: ingredients}}>
-      <Layout>{routes}</Layout>
-    </IngredientContext.Provider>
-  );
+	return (
+		<IngredientContextProvider>
+			{/* {error && <Modal onclick={() => clearError()} >{error}</Modal>} */}
+			<Layout>{routes}</Layout>
+		</IngredientContextProvider>
+
+	);
 }
 
 export default withRouter(App);
