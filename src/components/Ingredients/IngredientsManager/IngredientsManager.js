@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import Auxillary from "../../../hoc/Auxillary/Auxillary";
+import { IngredientContext } from "./../../../context/ingredients-context";
 
 import IngredientForm from "../IngredientsForm/IngredientsForm";
 import IngredientList from "../IngredientsList/IngredientsList";
 
 const IngredientsManager = () => {
 
+    const ingredientsContext = useContext(IngredientContext);
+
     return (
-        <Auxillary>
-            {/* <IngredientForm onAddIngredient={handleAddIngredient} /> */}
+        <>
             <IngredientForm />
-            {/* {isLoading && <span>Is loading...</span>} */}
-            {/* <IngredientList ingredients={ingredients} onclick={handleRemoveIngredient} /> */}
-            <IngredientList />
-        </Auxillary>
+            {ingredientsContext.isLoading && <span>loading ingredients...</span>}
+            <IngredientList
+                ingredients={ingredientsContext.ingredients}
+                removeIngredient={ingredientsContext.removeIngredient}
+            />
+        </>
     )
 }
 

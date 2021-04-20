@@ -32,7 +32,9 @@ const IngredientsForm = (props) => {
         <Card>
             <form onSubmit={submitHandler}>
                 <Input
-                    labelText={"Ingredient:"}
+                    type="text"
+                    elementType="input"
+                    labelText="Ingredient:"
                     name="ingredient"
                     value={ingredient}
                     onchange={

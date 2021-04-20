@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import Auxillary from "./../../../hoc/Auxillary/Auxillary";
+import { DrinkContext } from "./../../../context/drinks-context";
 
 import DrinksForm from "../DrinksForm/DrinksForm";
 import DrinksList from "../DrinksList/DrinksList";
 
 const DrinksManager = () => {
 
-    return (
-        <Auxillary>
-            <DrinksForm />
-            <DrinksList />
-        </Auxillary>
-    )
+    const drinksContext = useContext(DrinkContext);
 
+    return (
+        <>
+            <DrinksForm />
+            {drinksContext.isLoading && <span>loading drinks...</span>}
+            <DrinksList
+                drinks={drinksContext.drinks}
+                removeDrink={drinksContext.removeDrink}
+            />
+        </>
+    )
 }
 
 export default DrinksManager;

@@ -4,6 +4,8 @@ import Card from "./../../UI/Card/Card";
 import Input from "./../../UI/Input/Input";
 import Button from "./../../UI/Button/Button";
 
+import IngredientSelector from "./../../Ingredients/IngredientSelector/IngredientSelector";
+
 import { DrinkContext } from "./../../../context/drinks-context";
 
 const DrinksForm = (props) => {
@@ -37,19 +39,25 @@ const DrinksForm = (props) => {
         <Card>
             <form onSubmit={submitHandler}>
                 <Input
+                    type="text"
+                    elementType="input"
                     name="title"
+                    labelText="Drink Title:"
                     value={drinkTitle}
                     onchange={
                         event => setDrinkName(event.target.value)
                     }
                 />
                 <Input
+                    elementType="textarea"
                     name="description"
+                    labelText="Description:"
                     value={drinkDesc}
                     onchange={
                         event => setDrinkDesc(event.target.value)
                     }
                 />
+                <IngredientSelector />
                 <Button onclick={submitHandler} type="primary">Add Drink</Button>
             </form>
         </Card>
