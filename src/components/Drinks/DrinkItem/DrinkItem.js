@@ -1,6 +1,7 @@
 import React from "react";
 
 import Card from "./../../UI/Card/Card";
+import IngredientsList from "./../../Ingredients/IngredientsList/IngredientsList";
 
 const DrinkItem = (props) => {
     return (
@@ -9,7 +10,7 @@ const DrinkItem = (props) => {
                 <p>{props.drink.title}</p>
             </div>
             <div className="drink-recipe-ingredients">
-                <p>Ingredients here</p>
+                <IngredientsList ingredients={props.drink.ingredients} />
             </div>
             <div className="drink-recipe-description">
                 <p>{props.drink.description}</p>

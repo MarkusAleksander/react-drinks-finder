@@ -16,10 +16,10 @@ const ingredientsReducer = (currentIngredients, action) => {
         case ADD_INGREDIENT:
             return [...currentIngredients, action.ingredient];
         case REMOVE_INGREDIENT:
-            return currentIngredients.filter(ingredient => ingredient.id !== action.id);
+            return currentIngredients.filter(ingredient => ingredient.ingredient_id !== action.ingredient_id);
         default:
             throw new Error("Should not get here");
-    } 
+    }
 }
 
 export const IngredientContext = React.createContext({
@@ -33,7 +33,7 @@ export const IngredientContext = React.createContext({
 
 const IngredientContextProvider = props => {
 
-	const {sendRequest, clear, isLoading, error, responseData, reqId, reqExtra } = useHttp();
+    const { sendRequest, clear, isLoading, error, responseData, reqId, reqExtra } = useHttp();
     const [ingredientsState, ingredientsDispatch] = useReducer(ingredientsReducer, initialState);
 
     const handleLoadIngredients = useCallback(() => {
@@ -54,13 +54,13 @@ const IngredientContextProvider = props => {
             { ingredient: ingredient },
         )
     }, [sendRequest]);
-    const handleRemoveIngredients = useCallback((id) => {
+    const handleRemoveIngredients = useCallback((ingredient_id) => {
         sendRequest(
-            ENDPOINTS.INGREDIENTS.DELETE.concat(`${id}.json`),
+            ENDPOINTS.INGREDIENTS.DELETE.concat(`${ingredient_id}.json`),
             "DELETE",
-            id,
+            ingredient_id,
             REMOVE_INGREDIENT,
-            { id: id  }
+            { ingredient_id: ingredient_id }
         )
     }, [sendRequest]);
 
@@ -70,30 +70,32 @@ const IngredientContextProvider = props => {
     }, [handleLoadIngredients]);
 
     useEffect(() => {
-        if(!isLoading && !error) {
-            switch(reqId) {
+        if (!isLoading && !error) {
+            switch (reqId) {
                 case SET_INGREDIENT:
                     // * transform responseData
                     const ings = [];
-                    for(let id in responseData) {
+                    for (let ingredient_id in responseData) {
                         ings.push({
-                            id: id,
-                            ...responseData[id]
+                            ingredient_id: ingredient_id,
+                            ...responseData[ingredient_id]
                         })
                     }
-                    ingredientsDispatch({type: reqId, ingredients: ings});
+                    ingredientsDispatch({ type: reqId, ingredients: ings });
                     break;
                 case ADD_INGREDIENT:
-                    
-                    ingredientsDispatch({type: reqId, ingredient: {
-                        id: responseData.name,
-                        ...reqExtra
-                    }});
+
+                    ingredientsDispatch({
+                        type: reqId, ingredient: {
+                            ingredient_id: responseData.name,
+                            ...reqExtra
+                        }
+                    });
                     break;
                 case REMOVE_INGREDIENT:
-                    ingredientsDispatch({type: reqId, id: reqExtra.id});
+                    ingredientsDispatch({ type: reqId, ingredient_id: reqExtra.ingredient_id });
                     break;
-                default: 
+                default:
                     break;
             }
         }

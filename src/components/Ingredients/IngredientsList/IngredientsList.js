@@ -12,10 +12,10 @@ const IngredientsList = (props) => {
                 {props.ingredients && props.ingredients.map((ingredient) => {
                     return (
                         <li
-                            key={ingredient.id}
+                            key={ingredient.ingredient_id}
                         >
                             <IngredientItem ingredient={ingredient} onclick={props.onclick} />
-                            <Button onclick={() => props.removeIngredient(ingredient.id)}>Remove</Button>
+                            <Button onclick={(e) => { e.preventDefault(); props.removeIngredient(ingredient.ingredient_id) }}>Remove</Button>
                         </li>
                     )
                 })}
