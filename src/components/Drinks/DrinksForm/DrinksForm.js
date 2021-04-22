@@ -1,15 +1,18 @@
 import React, { useState, useContext, useReducer } from "react";
 
+// * Components
 import Card from "./../../UI/Card/Card";
 import Input from "./../../UI/Input/Input";
 import Button from "./../../UI/Button/Button";
-
 import IngredientSelector from "./../../Ingredients/IngredientSelector/IngredientSelector";
 
+// * Contexts
 import { DrinkContext } from "./../../../context/drinks-context";
 
+// * Initial State
 const initialState = [];
 
+// * Action types
 const ADD_INGREDIENT = "ADD_INGREDIENT";
 const REMOVE_INGREDIENT = "REMOVE_INGREDIENT";
 const CLEAR_INGREDIENTS = "CLEAR_INGREDIENT";
@@ -17,28 +20,31 @@ const CLEAR_INGREDIENTS = "CLEAR_INGREDIENT";
 const selectedIngredientsReducer = (curSelectedIngredients, action) => {
     switch (action.type) {
         case ADD_INGREDIENT:
-            return [...curSelectedIngredients, action.ingredient];
+            return [...curSelectedIngredients, action.ingredient_data];
         case REMOVE_INGREDIENT:
-            return curSelectedIngredients.filter(ingredient => ingredient.ingredient_id !== action.ingredient_id);
+            return curSelectedIngredients.filter(ingredient_item => ingredient_item.ingredient_id !== action.ingredient_id);
         case CLEAR_INGREDIENTS:
             return initialState;
         default:
-            throw new Error("Should not get here");
+            throw new Error(`[DrinksForm.js] - Illegal Action Provided ${action.type}`);
     }
 }
 
-const DrinksForm = (props) => {
+const DrinksForm = props => {
+
+    // * prepare drinks context
+    const drinksContext = useContext(DrinkContext);
 
     // * list of saved ingredients
     const [selectedIngredients, dispatchSelectedIngredients] = useReducer(selectedIngredientsReducer, initialState);
 
-    const drinksContext = useContext(DrinkContext);
-
+    // * drink states
     const [drinkTitle, setDrinkName] = useState("");
     const [drinkDesc, setDrinkDesc] = useState("");
 
     // * validate form
     const validateForm = () => {
+        // TODO
         return true;
     }
 
@@ -47,57 +53,62 @@ const DrinksForm = (props) => {
         event.preventDefault();
 
         if (validateForm()) {
+            // * pass drinks date to context to save
             drinksContext.addDrink({
                 title: drinkTitle,
                 description: drinkDesc,
                 ingredients: selectedIngredients
             });
 
-            setDrinkName("");
-            setDrinkDesc("");
-            dispatchSelectedIngredients({ type: CLEAR_INGREDIENTS });
+            // * clear data
+            handleClearData();
         }
     }
 
-    const handleAddIngredient = (ing_data) => {
-        dispatchSelectedIngredients({ type: ADD_INGREDIENT, ingredient: ing_data });
+    // * handle adding ingredient item
+    const handleAddIngredient = (ingredient_data) => {
+        dispatchSelectedIngredients({ type: ADD_INGREDIENT, ingredient_data: ingredient_data });
     }
 
+    // * handle remove ingredient item
     const handleRemoveIngredient = (ingredient_id) => {
         dispatchSelectedIngredients({ type: REMOVE_INGREDIENT, ingredient_id: ingredient_id })
     }
 
-    // const handleClearAll = () => dispatchSelectedIngredients({ type: CLEAR_INGREDIENT })
+    // * clear up
+    const handleClearData = () => {
+        setDrinkName("");
+        setDrinkDesc("");
+        dispatchSelectedIngredients({ type: CLEAR_INGREDIENTS });
+    }
 
     return (
         <Card>
-            <form onSubmit={submitHandler}>
-                <Input
-                    type="text"
-                    elementType="input"
-                    name="title"
-                    labelText="Drink Title:"
-                    value={drinkTitle}
-                    onchange={
-                        event => setDrinkName(event.target.value)
-                    }
-                />
-                <Input
-                    elementType="textarea"
-                    name="description"
-                    labelText="Description:"
-                    value={drinkDesc}
-                    onchange={
-                        event => setDrinkDesc(event.target.value)
-                    }
-                />
-                <IngredientSelector
-                    selectedIngredients={selectedIngredients}
-                    addIngredient={handleAddIngredient}
-                    removeIngredient={handleRemoveIngredient}
-                />
-                <Button onclick={submitHandler} type="primary">Add Drink</Button>
-            </form>
+            <Input
+                type="text"
+                elementType="input"
+                name="title"
+                labelText="Drink Title:"
+                value={drinkTitle}
+                onchange={
+                    event => setDrinkName(event.target.value)
+                }
+            />
+            <Input
+                elementType="textarea"
+                name="description"
+                labelText="Description:"
+                value={drinkDesc}
+                onchange={
+                    event => setDrinkDesc(event.target.value)
+                }
+            />
+            <IngredientSelector
+                selectedIngredients={selectedIngredients}
+                addIngredient={handleAddIngredient}
+                removeIngredient={handleRemoveIngredient}
+            />
+            <Button onclick={submitHandler} type="primary">Add Drink</Button>
         </Card>
     );
 }

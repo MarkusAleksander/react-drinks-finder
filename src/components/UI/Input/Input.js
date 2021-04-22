@@ -1,13 +1,13 @@
 import React from "react";
 
-import Auxillary from "./../../../hoc/Auxillary/Auxillary";
+const Input = props => {
 
-const Input = (props) => {
-
+    // * input
     let inputElement = null;
 
     switch (props.elementType) {
         case "input":
+            // * standard input
             inputElement = (
                 <input
                     name={props.name}
@@ -18,6 +18,7 @@ const Input = (props) => {
             );
             break;
         case "textarea":
+            // * textarea
             inputElement = (
                 <textarea
                     name={props.name}
@@ -27,6 +28,7 @@ const Input = (props) => {
             );
             break;
         case "select":
+            // * select box with options
             inputElement = (
                 <select
                     name={props.name}
@@ -42,6 +44,7 @@ const Input = (props) => {
             );
             break;
         default:
+            // * return standard input
             inputElement = (
                 <input
                     name={props.name}
@@ -53,16 +56,12 @@ const Input = (props) => {
             break;
     }
 
-
+    // * if label text is provided, wrap in label
     if (props.labelText) {
         inputElement = <label>{props.labelText}{inputElement}</label>
     }
 
-    return (
-        <Auxillary>
-            {inputElement}
-        </Auxillary>
-    )
+    return inputElement
 }
 
 export default Input;

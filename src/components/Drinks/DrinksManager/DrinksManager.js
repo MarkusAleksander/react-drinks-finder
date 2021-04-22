@@ -1,21 +1,24 @@
 import React, { useContext } from "react";
 
-import { DrinkContext } from "./../../../context/drinks-context";
-
+// * Components
 import DrinksForm from "../DrinksForm/DrinksForm";
 import DrinksList from "../DrinksList/DrinksList";
 
-const DrinksManager = () => {
+// * Contexts
+import { DrinkContext } from "./../../../context/drinks-context";
 
+const DrinksManager = props => {
     const drinksContext = useContext(DrinkContext);
 
     return (
         <>
+            {/* display a form to add drinks */}
             <DrinksForm />
-            {drinksContext.isLoading && <span>loading drinks...</span>}
+            {/* display the list of added drinks */}
             <DrinksList
                 drinks={drinksContext.drinks}
-                removeDrink={drinksContext.removeDrink}
+                onclick={drinksContext.removeDrink}
+                onclickText="Remove"
             />
         </>
     )

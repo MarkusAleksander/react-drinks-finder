@@ -16,10 +16,10 @@ const drinksReducer = (currentDrinks, action) => {
         case ADD_DRINK:
             return [...currentDrinks, action.drink];
         case REMOVE_DRINK:
-            return currentDrinks.filter(drink => drink.id !== action.id);
+            return currentDrinks.filter(drink => drink.drink_id !== action.drink_id);
         default:
             throw new Error("Should not get here");
-    } 
+    }
 }
 
 export const DrinkContext = React.createContext({
@@ -33,7 +33,7 @@ export const DrinkContext = React.createContext({
 
 const DrinkContextProvider = props => {
 
-    const {sendRequest, clear, isLoading, error, responseData, reqId, reqExtra } = useHttp();
+    const { sendRequest, clear, isLoading, error, responseData, reqId, reqExtra } = useHttp();
     const [drinksState, drinksDispatch] = useReducer(drinksReducer, initialState);
 
     const handleLoadDrinks = useCallback(() => {
@@ -54,13 +54,13 @@ const DrinkContextProvider = props => {
             { ...drink },
         )
     }, [sendRequest]);
-    const handleRemoveDrinks = useCallback((id) => {
+    const handleRemoveDrinks = useCallback((drink_id) => {
         sendRequest(
-            ENDPOINTS.DRINKS.DELETE.concat(`${id}.json`),
+            ENDPOINTS.DRINKS.DELETE.concat(`${drink_id}.json`),
             "DELETE",
-            id,
+            drink_id,
             REMOVE_DRINK,
-            { id: id  }
+            { drink_id }
         )
     }, [sendRequest]);
 
@@ -70,30 +70,32 @@ const DrinkContextProvider = props => {
     }, [handleLoadDrinks]);
 
     useEffect(() => {
-        if(!isLoading && !error) {
-            switch(reqId) {
+        if (!isLoading && !error) {
+            switch (reqId) {
                 case SET_DRINK:
                     // * transform responseData
                     const drinks = [];
-                    for(let id in responseData) {
+                    for (let drink_id in responseData) {
                         drinks.push({
-                            id: id,
-                            ...responseData[id]
+                            drink_id,
+                            ...responseData[drink_id]
                         })
                     }
-                    drinksDispatch({type: reqId, drinks: drinks});
+                    drinksDispatch({ type: reqId, drinks: drinks });
                     break;
                 case ADD_DRINK:
-                    
-                    drinksDispatch({type: reqId, drink: {
-                        id: responseData.name,
-                        ...reqExtra
-                    }});
+
+                    drinksDispatch({
+                        type: reqId, drink: {
+                            drink_id: responseData.name,
+                            ...reqExtra
+                        }
+                    });
                     break;
                 case REMOVE_DRINK:
-                    drinksDispatch({type: reqId, id: reqExtra.id});
+                    drinksDispatch({ type: reqId, drink_id: reqExtra.drink_id });
                     break;
-                default: 
+                default:
                     break;
             }
         }

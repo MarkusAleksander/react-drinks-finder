@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react";
 
+// * Components
 import Card from "../../UI/Card/Card";
 import Input from "../../UI/Input/Input";
 import Button from "../../UI/Button/Button";
 
+// * Contexts
 import { IngredientContext } from "./../../../context/ingredients-context";
 
-const IngredientsForm = (props) => {
+const IngredientsForm = props => {
 
     const ingredientsContext = useContext(IngredientContext);
 
@@ -15,6 +17,7 @@ const IngredientsForm = (props) => {
 
     // * validate form
     const validateForm = () => {
+        // TODO
         return true;
     }
 
@@ -23,6 +26,7 @@ const IngredientsForm = (props) => {
         event.preventDefault();
 
         if (validateForm()) {
+            // * Save ingredient via context
             ingredientsContext.addIngredient(ingredient);
             setIngredient("");
         }
@@ -30,7 +34,7 @@ const IngredientsForm = (props) => {
 
     return (
         <Card>
-            <form onSubmit={submitHandler}>
+            <div>
                 <Input
                     type="text"
                     elementType="input"
@@ -41,8 +45,8 @@ const IngredientsForm = (props) => {
                         event => setIngredient(event.target.value)
                     }
                 />
-                <Button type="primary">Add Ingredient</Button>
-            </form>
+                <Button type="primary" onclick={submitHandler}>Add Ingredient</Button>
+            </div>
         </Card>
     );
 }

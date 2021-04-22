@@ -1,46 +1,27 @@
-import React, { useContext, useState, useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 
+// * Components
 import IngredientsList from "./../IngredientsList/IngredientsList";
-
-import { IngredientContext } from "./../../../context/ingredients-context";
-
 import Input from "./../../UI/Input/Input";
 import Button from "./../../UI/Button/Button";
 
-const selectableMeasurements = [
-    {
-        value: "",
-        displayValue: "Select Measurement",
-        selected: true
-    },
-    {
-        value: "ml",
-        displayValue: "millilitres"
-    },
-    {
-        value: "l",
-        displayValue: "litres"
-    },
-    {
-        value: "g",
-        displayValue: "grams"
-    },
-    {
-        value: "tspn",
-        displayValue: "tspn"
-    },
-    {
-        value: "tblspn",
-        displayValue: "tblspn"
-    }
-];
+// * Contexts
+import { IngredientContext } from "./../../../context/ingredients-context";
 
+// * Configs
+import selectableMeasurements from "./../../../config/measurements";
+
+// * Initial State
 const initialState = {
+    // * selected ingredient id
     ingredient_id: "",
+    // * selected measurement
     measurement: "",
+    // * selected quantity
     quantity: ""
 }
 
+// * Action types
 const ADD_INGREDIENT = "ADD_INGREDIENT";
 const ADD_MEASUREMENT = "ADD_MEASUREMENT";
 const ADD_QUANTITY = "ADD_QUANTITY";
@@ -57,38 +38,48 @@ const ingredientSelectorReducer = (currentSelection, action) => {
         case CLEAR:
             return initialState;
         default:
-            throw new Error("Shouldn't get here");
+            throw new Error(`[IngredientSelector.js] - Illegal Action Provided: ${action.type}`);
     }
 }
 
 const IngredientSelector = props => {
+    // * set up reducers
     const [selectedIngredient, dispatchSelectedIngredient] = useReducer(ingredientSelectorReducer, initialState);
 
     // * ingredient context
     const ingredientContext = useContext(IngredientContext);
 
+    // * handle adding (saving) ingredient
     const handleAddIngredient = (e) => {
         e.preventDefault();
+        // * pass data up to parent
         props.addIngredient(selectedIngredient);
+        // * clear data
         dispatchSelectedIngredient({ type: CLEAR });
     }
 
+    // * handle removing ingredient
     const handleRemoveIngredient = (ingredient_id) => {
+        // * pass ingredient id up to parent
         props.removeIngredient(ingredient_id);
     }
 
+    // * handle selecting ingredient in form
     const onSelectIngredient = (e) => {
         dispatchSelectedIngredient({ type: ADD_INGREDIENT, ingredient_id: e.target.value });
     }
 
+    // * handle selecting measurement in form
     const onSelectMeasurement = (e) => {
         dispatchSelectedIngredient({ type: ADD_MEASUREMENT, measurement: e.target.value });
     }
 
+    // * handle entering quantity in form
     const onEnterQuantity = (e) => {
         dispatchSelectedIngredient({ type: ADD_QUANTITY, quantity: e.target.value });
     }
 
+    // * prepare ingredient select options
     const selectOptions = [
         {
             displayValue: "Select Ingredient",
@@ -115,18 +106,19 @@ const IngredientSelector = props => {
                 options={selectOptions}
             />
             <Input
+                elementType="text"
+                type="number"
+                name="quantity"
+                value={selectedIngredient.quantity}
+                onchange={onEnterQuantity}
+                labelText="Quantity:"
+            />
+            <Input
                 elementType="select"
                 name="measurement"
                 value={selectedIngredient.measurement}
                 changed={onSelectMeasurement}
                 options={selectableMeasurements}
-            />
-            <Input
-                elementType="text"
-                name="quantity"
-                value={selectedIngredient.quantity}
-                onchange={onEnterQuantity}
-                labelText="Quantity:"
             />
             <Button onclick={handleAddIngredient}>Add</Button>
         </>

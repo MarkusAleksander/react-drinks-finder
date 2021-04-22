@@ -1,9 +1,10 @@
 import React from "react";
 
+// * Components
 import Card from "./../../UI/Card/Card";
 import IngredientsList from "./../../Ingredients/IngredientsList/IngredientsList";
 
-const DrinkItem = (props) => {
+const DrinkItem = props => {
     return (
         <Card>
             <div className="drink-recipe-item">
@@ -15,6 +16,9 @@ const DrinkItem = (props) => {
             <div className="drink-recipe-description">
                 <p>{props.drink.description}</p>
             </div>
+            {
+                props.onclick ? <div><span onClick={() => { props.onclick(props.drink.drink_id) }}>{props.onclickText ? props.onclickText : null}</span></div> : null
+            }
         </Card>
     )
 }

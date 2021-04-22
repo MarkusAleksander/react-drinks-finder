@@ -1,21 +1,24 @@
 import React, { useContext } from "react";
 
-import { IngredientContext } from "./../../../context/ingredients-context";
-
+// * Components
 import IngredientForm from "../IngredientsForm/IngredientsForm";
 import IngredientList from "../IngredientsList/IngredientsList";
 
-const IngredientsManager = () => {
+// * Contexts
+import { IngredientContext } from "./../../../context/ingredients-context";
 
+const IngredientsManager = props => {
     const ingredientsContext = useContext(IngredientContext);
 
     return (
         <>
+            {/* * display a form to add ingredients */}
             <IngredientForm />
-            {ingredientsContext.isLoading && <span>loading ingredients...</span>}
+            {/* * display the list of added ingredients */}
             <IngredientList
                 ingredients={ingredientsContext.ingredients}
-                removeIngredient={ingredientsContext.removeIngredient}
+                onclick={ingredientsContext.removeIngredient}
+                onclickText="Remove"
             />
         </>
     )
