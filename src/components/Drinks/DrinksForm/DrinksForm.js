@@ -4,7 +4,7 @@ import React, { useState, useContext, useReducer } from "react";
 import Card from "./../../UI/Card/Card";
 import Input from "./../../UI/Input/Input";
 import Button from "./../../UI/Button/Button";
-import IngredientSelector from "./../../Ingredients/IngredientSelector/IngredientSelector";
+import IngredientBuilder from "./../../Ingredients/IngredientBuilder/IngredientBuilder";
 
 // * Contexts
 import { DrinkContext } from "./../../../context/drinks-context";
@@ -103,7 +103,7 @@ const DrinksForm = props => {
                     event => setDrinkDesc(event.target.value)
                 }
             />
-            <IngredientSelector
+            <IngredientBuilder
                 selectedIngredients={selectedIngredients}
                 addIngredient={handleAddIngredient}
                 removeIngredient={handleRemoveIngredient}

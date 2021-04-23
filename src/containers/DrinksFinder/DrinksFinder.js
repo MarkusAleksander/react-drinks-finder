@@ -1,20 +1,17 @@
-import Auxillary from "../../hoc/Auxillary/Auxillary";
+import React from "react";
 
-import Column from "../../components/UI/Column/Column";
+// * Components
+import DrinksFilter from "./../../components/Drinks/DrinksFilter/DrinksFilter";
+// import Column from "../../components/UI/Column/Column";
 
-import DrinkRecipes from "../../components/Drinks/DrinkRecipes";
-import Ingredients from "../../components/Ingredients/IngredientsList/IngredientsList";
 
 const DrinksFinder = () => {
     return (
-        <Auxillary>
-            <Column>
-                <DrinkRecipes />
-            </Column>
-            <Column>
-                <Ingredients />
-            </Column>
-        </Auxillary>
+        <>
+            {/* <Column> */}
+            <DrinksFilter />
+            {/* </Column> */}
+        </>
     )
 }
 
