@@ -3,6 +3,9 @@ import React, { useContext } from "react";
 // * Components
 import IngredientItem from "./../IngredientItem/IngredientItem";
 
+// * UI Components
+import Typography from "@material-ui/core/Typography";
+
 // * Contexts
 import { IngredientContext } from "./../../../context/ingredients-context";
 
@@ -14,9 +17,9 @@ const IngredientsList = props => {
         <>
             {
                 ingredientsContext.isLoading && (!props.ingredients || !props.ingredients.length)
-                    ? <p>Loading Ingredients...</p>
+                    ? <Typography variant={"body1"}>Loading Ingredients...</Typography>
                     : <>
-                        {ingredientsContext.isLoading && <p>Updating Ingredients...</p>}
+                        {ingredientsContext.isLoading && <Typography variant={"body1"}>Updating Ingredients...</Typography>}
                         <ul className="ingredients-list">
                             {props.ingredients && props.ingredients.map((ingredient_data) => {
                                 // * loop over each ingredient and pass down the ingredient data

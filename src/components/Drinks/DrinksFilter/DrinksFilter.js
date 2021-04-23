@@ -4,7 +4,9 @@ import React, { useContext, useReducer, useState } from "react";
 import DrinksList from "../DrinksList/DrinksList";
 import IngredientsList from "../../Ingredients/IngredientsList/IngredientsList";
 import IngredientSelector from "../../Ingredients/IngredientSelector/IngredientSelector";
-import Button from "../../UI/Button/Button";
+
+// * UI Components
+import PrimaryButton from "../../UI/Button/PrimaryButton";
 
 // * Contexts
 import { DrinkContext } from "./../../../context/drinks-context";
@@ -68,7 +70,10 @@ const DrinksFilter = props => {
                 onSelectIngredient={onSelectIngredientHandler}
                 excludeIdList={selected_ids}
             />
-            <Button onclick={onStoreIngredientHandler} disabled={currentIngredientSelection === ""}>Add Ingredient</Button>
+            <PrimaryButton
+                onClick={onStoreIngredientHandler}
+                disabled={currentIngredientSelection === ""}
+            >Add Ingredient</PrimaryButton>
             <IngredientsList
                 ingredients={ingredients}
                 onclick={onRemoveIngredientHandler}

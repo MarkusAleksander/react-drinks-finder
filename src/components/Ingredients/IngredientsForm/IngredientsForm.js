@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 
 // * Components
-import Card from "../../UI/Card/Card";
+import SimpleCard from "../../UI/SimpleCard/SimpleCard";
 import Input from "../../UI/Input/Input";
-import Button from "../../UI/Button/Button";
+
+// * UI Components
+import PrimaryButton from "../../UI/Button/PrimaryButton";
 
 // * Contexts
 import { IngredientContext } from "./../../../context/ingredients-context";
@@ -33,7 +35,7 @@ const IngredientsForm = props => {
     }
 
     return (
-        <Card>
+        <SimpleCard>
             <div>
                 <Input
                     type="text"
@@ -45,9 +47,12 @@ const IngredientsForm = props => {
                         event => setIngredient(event.target.value)
                     }
                 />
-                <Button type="primary" onclick={submitHandler}>Add Ingredient</Button>
+                <PrimaryButton
+                    onclick={submitHandler}
+                    disabled={ingredient === ""}
+                >Add Ingredient</PrimaryButton>
             </div>
-        </Card>
+        </SimpleCard>
     );
 }
 

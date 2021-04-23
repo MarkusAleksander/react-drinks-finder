@@ -2,16 +2,18 @@ import React from "react";
 
 // * Components
 import DrinksFilter from "./../../components/Drinks/DrinksFilter/DrinksFilter";
-// import Column from "../../components/UI/Column/Column";
+
+// * UI Components
+import Grid from "@material-ui/core/Grid";
 
 
 const DrinksFinder = () => {
     return (
-        <>
-            {/* <Column> */}
-            <DrinksFilter />
-            {/* </Column> */}
-        </>
+        <Grid container>
+            <Grid item>
+                <DrinksFilter />
+            </Grid>
+        </Grid>
     )
 }
 

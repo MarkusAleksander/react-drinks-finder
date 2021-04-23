@@ -1,8 +1,16 @@
 import React from "react";
 
+// * UI Components
+import Container from "@material-ui/core/Container";
+import Paper from "@material-ui/core/Paper";
+
 const Layout = (props) => {
     return (
-        <div className="content">{props.children}</div>
+        <Container fixed>
+            <Paper elevation={5}>
+                {props.children}
+            </Paper>
+        </Container>
     );
 }
 

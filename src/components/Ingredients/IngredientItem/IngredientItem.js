@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
 
 // * Components
-import Card from "./../../UI/Card/Card";
+import SimpleCard from "../../UI/SimpleCard/SimpleCard";
+
+// * UI Components
+import Typography from "@material-ui/core/Typography";
 
 // * Contexts
 import { IngredientContext } from "./../../../context/ingredients-context";
@@ -18,17 +21,17 @@ const IngredientItem = props => {
             {
                 // * if no data found, render nothing
                 ing_data ?
-                    <Card>
+                    <SimpleCard>
                         {
                             // * if we have quantity and measurement, render them as well as the ingredient name
-                            <p>
+                            <Typography variant={"body1"}>
                                 {(props.ingredient.quantity && props.ingredient.measurement ?
                                     `${props.ingredient.quantity}${props.ingredient.measurement} ` : "").concat(ing_data.ingredient)}
                                 {props.onclick ? <span onClick={() => props.onclick(props.ingredient.ingredient_id)}>{props.onclickText ? props.onclickText : null}</span> : null}
-                            </p>
+                            </Typography>
                         }
-                    </Card>
-                    : <p>Ingredient not found!</p>
+                    </SimpleCard>
+                    : <Typography variant={"body1"}>Ingredient not found!</Typography>
             }
 
         </>

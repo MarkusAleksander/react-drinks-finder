@@ -1,20 +1,22 @@
 import React from "react";
 
-import Auxillary from "../../hoc/Auxillary/Auxillary";
-
-import Column from "../../components/UI/Column/Column";
-
+// * Components
 import IngredientsManager from "../../components/Ingredients/IngredientsManager/IngredientsManager";
 import DrinksManager from "../../components/Drinks/DrinksManager/DrinksManager";
 
+// * UI Components
+import Grid from "@material-ui/core/Grid";
+
 const DrinksBuilder = () => {
     return (
-        <Auxillary>
-            <Column>
+        <Grid container>
+            <Grid item>
                 <IngredientsManager />
+            </Grid>
+            <Grid item>
                 <DrinksManager />
-            </Column>
-        </Auxillary>
+            </Grid>
+        </Grid>
     )
 }
 

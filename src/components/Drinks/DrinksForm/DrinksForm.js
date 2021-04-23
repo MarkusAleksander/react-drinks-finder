@@ -1,10 +1,12 @@
 import React, { useState, useContext, useReducer } from "react";
 
 // * Components
-import Card from "./../../UI/Card/Card";
+import SimpleCard from "../../UI/SimpleCard/SimpleCard";
 import Input from "./../../UI/Input/Input";
-import Button from "./../../UI/Button/Button";
 import IngredientBuilder from "./../../Ingredients/IngredientBuilder/IngredientBuilder";
+
+// * UI Components
+import PrimaryButton from "../../UI/Button/PrimaryButton";
 
 // * Contexts
 import { DrinkContext } from "./../../../context/drinks-context";
@@ -82,8 +84,16 @@ const DrinksForm = props => {
         dispatchSelectedIngredients({ type: CLEAR_INGREDIENTS });
     }
 
+    const determineDisabled = () => {
+        return (
+            drinkTitle === ""
+            || drinkDesc === ""
+            || !selectedIngredients.length
+        );
+    }
+
     return (
-        <Card>
+        <SimpleCard>
             <Input
                 type="text"
                 elementType="input"
@@ -108,8 +118,11 @@ const DrinksForm = props => {
                 addIngredient={handleAddIngredient}
                 removeIngredient={handleRemoveIngredient}
             />
-            <Button onclick={submitHandler} type="primary">Add Drink</Button>
-        </Card>
+            <PrimaryButton
+                onClick={submitHandler}
+                disabled={determineDisabled()}
+            >Add Drink</PrimaryButton>
+        </SimpleCard>
     );
 }
 

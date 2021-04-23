@@ -4,7 +4,9 @@ import React, { useReducer } from "react";
 import IngredientsList from "./../IngredientsList/IngredientsList";
 import IngredientSelector from "./../IngredientSelector/IngredientSelector";
 import Input from "./../../UI/Input/Input";
-import Button from "./../../UI/Button/Button";
+
+// * UI Components
+import PrimaryButton from '../../UI/Button/PrimaryButton';
 
 // * Configs
 import selectableMeasurements from "./../../../config/measurements";
@@ -74,6 +76,14 @@ const IngredientBuilder = props => {
         dispatchSelectedIngredient({ type: ADD_QUANTITY, quantity: e.target.value });
     }
 
+    const determineDisabled = () => {
+        return (
+            selectedIngredient.ingredient_id === ""
+            || selectedIngredient.measurement === ""
+            || selectedIngredient.quantity === ""
+        )
+    }
+
     return (
         <>
             <IngredientsList
@@ -85,7 +95,7 @@ const IngredientBuilder = props => {
                 excludeIdList={props.selectedIngredients.map(ing => ing.ingredient_id)}
             />
             <Input
-                elementType="text"
+                elementType="input"
                 type="number"
                 name="quantity"
                 value={selectedIngredient.quantity}
@@ -99,7 +109,10 @@ const IngredientBuilder = props => {
                 changed={onSelectMeasurement}
                 options={selectableMeasurements}
             />
-            <Button onclick={handleAddIngredient}>Add</Button>
+            <PrimaryButton
+                onClick={handleAddIngredient}
+                disabled={determineDisabled()}
+            >Add</PrimaryButton>
         </>
     )
 }

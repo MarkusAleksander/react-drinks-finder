@@ -1,12 +1,12 @@
 import React from "react";
 
 // * Components
-import Card from "./../../UI/Card/Card";
+import SimpleCard from "../../UI/SimpleCard/SimpleCard";
 import IngredientsList from "./../../Ingredients/IngredientsList/IngredientsList";
 
 const DrinkItem = props => {
     return (
-        <Card>
+        <SimpleCard>
             <div className="drink-recipe-item">
                 <p>{props.drink.title}</p>
             </div>
@@ -19,7 +19,7 @@ const DrinkItem = props => {
             {
                 props.onclick ? <div><span onClick={() => { props.onclick(props.drink.drink_id) }}>{props.onclickText ? props.onclickText : null}</span></div> : null
             }
-        </Card>
+        </SimpleCard>
     )
 }
 
