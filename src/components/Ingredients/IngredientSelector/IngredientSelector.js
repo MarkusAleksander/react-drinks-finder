@@ -44,6 +44,7 @@ const IngredientSelector = props => {
             value={selectedIngredient}
             changed={onSelectIngredient}
             options={selectOptions}
+            labelText="Select ingredient"
         />
     )
 }

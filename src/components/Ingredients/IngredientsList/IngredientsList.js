@@ -27,7 +27,7 @@ const IngredientsList = props => {
                                 // * loop over each ingredient and pass down the ingredient data
                                 return (
                                     <IngredientItem
-                                        onRemove={props.onRemove}
+                                        onRemove={props.onRemove ? props.onRemove : null}
                                         key={ingredient_data.ingredient_id}
                                         ingredient={ingredient_data}
                                     ></IngredientItem>

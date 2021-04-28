@@ -7,6 +7,7 @@ import Input from "./../../UI/Input/Input";
 
 // * UI Components
 import PrimaryButton from '../../UI/Button/PrimaryButton';
+import Grid from '@material-ui/core/Grid';
 
 // * Configs
 import selectableMeasurements from "./../../../config/measurements";
@@ -85,35 +86,46 @@ const IngredientBuilder = props => {
     }
 
     return (
-        <>
-            <IngredientsList
-                ingredients={props.selectedIngredients}
-                onRemove={handleRemoveIngredient}
-            />
-            <IngredientSelector
-                onSelectIngredient={onSelectIngredient}
-                excludeIdList={props.selectedIngredients.map(ing => ing.ingredient_id)}
-            />
-            <Input
-                elementType="input"
-                type="number"
-                name="quantity"
-                value={selectedIngredient.quantity}
-                onchange={onEnterQuantity}
-                labelText="Quantity:"
-            />
-            <Input
-                elementType="select"
-                name="measurement"
-                value={selectedIngredient.measurement}
-                changed={onSelectMeasurement}
-                options={selectableMeasurements}
-            />
-            <PrimaryButton
-                onClick={handleAddIngredient}
-                disabled={determineDisabled()}
-            >Add</PrimaryButton>
-        </>
+        <Grid container spacing={1}>
+            <Grid item xs={12}>
+                <IngredientsList
+                    ingredients={props.selectedIngredients}
+                    onRemove={handleRemoveIngredient}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <IngredientSelector
+                    onSelectIngredient={onSelectIngredient}
+                    excludeIdList={props.selectedIngredients.map(ing => ing.ingredient_id)}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <Input
+                    elementType="input"
+                    type="number"
+                    name="quantity"
+                    value={selectedIngredient.quantity}
+                    onchange={onEnterQuantity}
+                    labelText="Enter Quantity:"
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <Input
+                    elementType="select"
+                    name="measurement"
+                    value={selectedIngredient.measurement}
+                    changed={onSelectMeasurement}
+                    options={selectableMeasurements}
+                    labelText="Select ingredient measurement"
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <PrimaryButton
+                    onClick={handleAddIngredient}
+                    disabled={determineDisabled()}
+                >Add</PrimaryButton>
+            </Grid>
+        </Grid>
     )
 }
 

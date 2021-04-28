@@ -41,7 +41,7 @@ const Input = props => {
             // * select box with options
             inputElement = (
                 <>
-                    {props.labelText ? <InputLabel htmlFor={props.name}>{props.labelText}</InputLabel> : null}
+                    {props.labelText ? <InputLabel shrink htmlFor={props.name}>{props.labelText}</InputLabel> : null}
                     <NativeSelect
                         name={props.name}
                         id={props.name}

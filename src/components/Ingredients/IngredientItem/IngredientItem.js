@@ -29,13 +29,15 @@ const IngredientItem = props => {
                             onClick={() => props.onRemove(props.ingredient.ingredient_id)}
                             key={props.ingredient.ingredient_id}
                         >
-                            <ListItemIcon>
-                                <DeleteIcon />
-                            </ListItemIcon>
-                                <ListItemText primary={(props.ingredient.quantity && props.ingredient.measurement ?
-                                    `${props.ingredient.quantity}${props.ingredient.measurement} ` : "").concat(ing_data.ingredient)}
-                                />
-                            </ListItem>
+                            {props.onRemove ?
+                                <ListItemIcon>
+                                    <DeleteIcon />
+                                </ListItemIcon>
+                                : null}
+                            <ListItemText primary={(props.ingredient.quantity && props.ingredient.measurement ?
+                                `${props.ingredient.quantity}${props.ingredient.measurement} ` : "").concat(ing_data.ingredient)}
+                            />
+                        </ListItem>
                     </>
                     : <Typography variant={"body1"}>Ingredient not found!</Typography>
             }
