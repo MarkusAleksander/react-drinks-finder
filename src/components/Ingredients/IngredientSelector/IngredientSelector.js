@@ -17,9 +17,6 @@ const IngredientSelector = props => {
     const onSelectIngredient = (e) => {
         setSelectedIngredient(e.target.value);
         props.onSelectIngredient({ ingredient_id: e.target.value });
-        // if (props.resetDropdown) {
-        //     setSelectedIngredient("");
-        // }
     }
 
     // * remove items that shouldn't be shown
@@ -31,7 +28,6 @@ const IngredientSelector = props => {
             displayValue: "Select Ingredient",
             value: "",
             selected: true,
-            // disabled: true
         },
         ...filteredIngredients.map((ingredient => {
             return {

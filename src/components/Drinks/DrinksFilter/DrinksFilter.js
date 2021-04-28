@@ -8,6 +8,8 @@ import IngredientSelector from "../../Ingredients/IngredientSelector/IngredientS
 // * UI Components
 import PrimaryButton from "../../UI/Button/PrimaryButton";
 
+import Box from "@material-ui/core/Box";
+
 // * Contexts
 import { DrinkContext } from "./../../../context/drinks-context";
 
@@ -66,19 +68,23 @@ const DrinksFilter = props => {
 
     return (
         <>
-            <IngredientSelector
-                onSelectIngredient={onSelectIngredientHandler}
-                excludeIdList={selected_ids}
-            />
-            <PrimaryButton
-                onClick={onStoreIngredientHandler}
-                disabled={currentIngredientSelection === ""}
-            >Add Ingredient</PrimaryButton>
-            <IngredientsList
-                ingredients={ingredients}
-                onclick={onRemoveIngredientHandler}
-                onclickText="Remove"
-            />
+            <Box>
+                <IngredientSelector
+                    onSelectIngredient={onSelectIngredientHandler}
+                    excludeIdList={selected_ids}
+                />
+                <PrimaryButton
+                    onClick={onStoreIngredientHandler}
+                    disabled={currentIngredientSelection === ""}
+                >Add Ingredient</PrimaryButton>
+            </Box>
+            <Box>
+                <IngredientsList
+                    ingredients={ingredients}
+                    onclick={onRemoveIngredientHandler}
+                    onclickText="Remove"
+                />
+            </Box>
             <DrinksList drinks={filteredDrinks} />
         </>
     )
