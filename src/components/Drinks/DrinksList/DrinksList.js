@@ -3,8 +3,13 @@ import React, { useContext } from "react";
 // * Components
 import DrinkItem from "./../DrinkItem/DrinkItem";
 
+// * UI Components
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+
 // * Contexts
 import { DrinkContext } from "./../../../context/drinks-context";
+
 
 const DrinksList = props => {
 
@@ -17,21 +22,20 @@ const DrinksList = props => {
                     ? <p>Loading Drinks...</p>
                     : <>
                         {drinksContext.isLoading && <p>Updating drinks...</p>}
-                        <ul className="drinks-list">
+                        <List className="drinks-list">
                             {props.drinks && props.drinks.map(drink => {
                                 return (
-                                    <li
+                                    <ListItem
                                         key={drink.drink_id}
                                     >
                                         <DrinkItem
                                             drink={drink}
-                                            onclick={props.onclick}
-                                            onclickText={props.onclickText}
+                                            onRemove={props.onRemove}
                                         />
-                                    </li>
+                                    </ListItem>
                                 )
                             })}
-                        </ul>
+                        </List>
                     </>
             }
         </>

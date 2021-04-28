@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 
-// * Components
-import SimpleCard from "../../UI/SimpleCard/SimpleCard";
-
 // * UI Components
 import Typography from "@material-ui/core/Typography";
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+
+import DeleteIcon from '@material-ui/icons/Delete';
 
 // * Contexts
 import { IngredientContext } from "./../../../context/ingredients-context";
@@ -21,19 +23,22 @@ const IngredientItem = props => {
             {
                 // * if no data found, render nothing
                 ing_data ?
-                    <SimpleCard>
-                        {
-                            // * if we have quantity and measurement, render them as well as the ingredient name
-                            <Typography variant={"body1"}>
-                                {(props.ingredient.quantity && props.ingredient.measurement ?
+                    <>
+                        <ListItem
+                            button
+                            onClick={() => props.onRemove(props.ingredient.ingredient_id)}
+                            key={props.ingredient.ingredient_id}
+                        >
+                            <ListItemIcon>
+                                <DeleteIcon />
+                            </ListItemIcon>
+                                <ListItemText primary={(props.ingredient.quantity && props.ingredient.measurement ?
                                     `${props.ingredient.quantity}${props.ingredient.measurement} ` : "").concat(ing_data.ingredient)}
-                                {props.onclick ? <span onClick={() => props.onclick(props.ingredient.ingredient_id)}>{props.onclickText ? props.onclickText : null}</span> : null}
-                            </Typography>
-                        }
-                    </SimpleCard>
+                                />
+                            </ListItem>
+                    </>
                     : <Typography variant={"body1"}>Ingredient not found!</Typography>
             }
-
         </>
     )
 }

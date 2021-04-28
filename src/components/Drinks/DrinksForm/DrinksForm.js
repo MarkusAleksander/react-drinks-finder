@@ -1,12 +1,12 @@
 import React, { useState, useContext, useReducer } from "react";
 
 // * Components
-import SimpleCard from "../../UI/SimpleCard/SimpleCard";
 import Input from "./../../UI/Input/Input";
 import IngredientBuilder from "./../../Ingredients/IngredientBuilder/IngredientBuilder";
 
 // * UI Components
 import PrimaryButton from "../../UI/Button/PrimaryButton";
+import Grid from '@material-ui/core/Grid';
 
 // * Contexts
 import { DrinkContext } from "./../../../context/drinks-context";
@@ -93,36 +93,46 @@ const DrinksForm = props => {
     }
 
     return (
-        <SimpleCard>
-            <Input
-                type="text"
-                elementType="input"
-                name="title"
-                labelText="Drink Title:"
-                value={drinkTitle}
-                onchange={
-                    event => setDrinkName(event.target.value)
-                }
-            />
-            <Input
-                elementType="textarea"
-                name="description"
-                labelText="Description:"
-                value={drinkDesc}
-                onchange={
-                    event => setDrinkDesc(event.target.value)
-                }
-            />
-            <IngredientBuilder
-                selectedIngredients={selectedIngredients}
-                addIngredient={handleAddIngredient}
-                removeIngredient={handleRemoveIngredient}
-            />
-            <PrimaryButton
-                onClick={submitHandler}
-                disabled={determineDisabled()}
-            >Add Drink</PrimaryButton>
-        </SimpleCard>
+        <form onSubmit={submitHandler}>
+            <Grid container>
+                <Grid xs={12}>
+                    <Input
+                        type="text"
+                        elementType="input"
+                        name="title"
+                        labelText="Drink Title:"
+                        value={drinkTitle}
+                        onchange={
+                            event => setDrinkName(event.target.value)
+                        }
+                    />
+                </Grid>
+                <Grid xs={12}>
+                    <Input
+                        elementType="textarea"
+                        name="description"
+                        labelText="Description:"
+                        value={drinkDesc}
+                        onchange={
+                            event => setDrinkDesc(event.target.value)
+                        }
+                    />
+                </Grid>
+                <Grid xs={12}>
+                    <IngredientBuilder
+                        selectedIngredients={selectedIngredients}
+                        addIngredient={handleAddIngredient}
+                        removeIngredient={handleRemoveIngredient}
+                    />
+                </Grid>
+                <Grid xs={12}>
+                    <PrimaryButton
+                        // onClick={submitHandler}
+                        disabled={determineDisabled()}
+                    >Add Drink</PrimaryButton>
+                </Grid>
+                </Grid>
+        </form>
     );
 }
 

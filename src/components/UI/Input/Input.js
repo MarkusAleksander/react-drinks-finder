@@ -72,7 +72,7 @@ const Input = props => {
     }
 
     return (
-        <FormControl>
+        <FormControl fullWidth>
             {inputElement}
         </FormControl>
     );

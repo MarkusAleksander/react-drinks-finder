@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 
 // * Components
-import SimpleCard from "../../UI/SimpleCard/SimpleCard";
 import Input from "../../UI/Input/Input";
 
 // * UI Components
@@ -35,8 +34,7 @@ const IngredientsForm = props => {
     }
 
     return (
-        <SimpleCard>
-            <div>
+        <>
                 <Input
                     type="text"
                     elementType="input"
@@ -51,8 +49,7 @@ const IngredientsForm = props => {
                     onclick={submitHandler}
                     disabled={ingredient === ""}
                 >Add Ingredient</PrimaryButton>
-            </div>
-        </SimpleCard>
+        </>
     );
 }
 

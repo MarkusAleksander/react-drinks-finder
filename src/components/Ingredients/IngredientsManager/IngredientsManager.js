@@ -17,8 +17,7 @@ const IngredientsManager = props => {
             {/* * display the list of added ingredients */}
             <IngredientList
                 ingredients={ingredientsContext.ingredients}
-                onclick={ingredientsContext.removeIngredient}
-                onclickText="Remove"
+                onRemove={ingredientsContext.removeIngredient}
             />
         </>
     )

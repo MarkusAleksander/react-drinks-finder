@@ -5,6 +5,8 @@ import IngredientItem from "./../IngredientItem/IngredientItem";
 
 // * UI Components
 import Typography from "@material-ui/core/Typography";
+import List from '@material-ui/core/List';
+
 
 // * Contexts
 import { IngredientContext } from "./../../../context/ingredients-context";
@@ -20,22 +22,18 @@ const IngredientsList = props => {
                     ? <Typography variant={"body1"}>Loading Ingredients...</Typography>
                     : <>
                         {ingredientsContext.isLoading && <Typography variant={"body1"}>Updating Ingredients...</Typography>}
-                        <ul className="ingredients-list">
+                        <List className="ingredients-list">
                             {props.ingredients && props.ingredients.map((ingredient_data) => {
                                 // * loop over each ingredient and pass down the ingredient data
                                 return (
-                                    <li
+                                    <IngredientItem
+                                        onRemove={props.onRemove}
                                         key={ingredient_data.ingredient_id}
-                                    >
-                                        <IngredientItem
-                                            ingredient={ingredient_data}
-                                            onclick={props.onclick}
-                                            onclickText={props.onclickText}
-                                        />
-                                    </li>
+                                        ingredient={ingredient_data}
+                                    ></IngredientItem>
                                 )
                             })}
-                        </ul>
+                        </List>
                     </>
             }
         </>

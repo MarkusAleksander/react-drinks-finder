@@ -81,8 +81,7 @@ const DrinksFilter = props => {
             <Box>
                 <IngredientsList
                     ingredients={ingredients}
-                    onclick={onRemoveIngredientHandler}
-                    onclickText="Remove"
+                    onRemove={onRemoveIngredientHandler}
                 />
             </Box>
             <DrinksList drinks={filteredDrinks} />

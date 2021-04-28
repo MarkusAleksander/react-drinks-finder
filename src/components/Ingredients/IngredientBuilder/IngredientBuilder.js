@@ -88,7 +88,7 @@ const IngredientBuilder = props => {
         <>
             <IngredientsList
                 ingredients={props.selectedIngredients}
-                removeIngredient={handleRemoveIngredient}
+                onRemove={handleRemoveIngredient}
             />
             <IngredientSelector
                 onSelectIngredient={onSelectIngredient}
