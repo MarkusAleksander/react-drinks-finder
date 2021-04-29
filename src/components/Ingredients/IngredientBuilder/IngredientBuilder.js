@@ -123,6 +123,7 @@ const IngredientBuilder = props => {
                 <PrimaryButton
                     onClick={handleAddIngredient}
                     disabled={determineDisabled()}
+                    alignment="center"
                 >Add</PrimaryButton>
             </Grid>
         </Grid>

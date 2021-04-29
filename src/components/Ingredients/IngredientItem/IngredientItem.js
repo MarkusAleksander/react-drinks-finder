@@ -25,8 +25,8 @@ const IngredientItem = props => {
                 ing_data ?
                     <>
                         <ListItem
-                            button
-                            onClick={() => props.onRemove(props.ingredient.ingredient_id)}
+                            button={!!props.onRemove}
+                            onClick={props.onRemove ? () => props.onRemove(props.ingredient.ingredient_id) : null}
                             key={props.ingredient.ingredient_id}
                         >
                             {props.onRemove ?

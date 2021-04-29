@@ -8,6 +8,8 @@ import IngredientBuilder from "./../../Ingredients/IngredientBuilder/IngredientB
 import PrimaryButton from "../../UI/Button/PrimaryButton";
 import Grid from '@material-ui/core/Grid';
 
+import GridItem from "./../../UI/GridItem/GridItem";
+
 // * Contexts
 import { DrinkContext } from "./../../../context/drinks-context";
 
@@ -94,7 +96,7 @@ const DrinksForm = props => {
 
     return (
         <Grid container spacing={1} component="form" onSubmit={submitHandler}>
-            <Grid item xs={12} sm={6}>
+            <GridItem sm={6}>
                 <Input
                     type="text"
                     elementType="input"
@@ -105,14 +107,15 @@ const DrinksForm = props => {
                         event => setDrinkName(event.target.value)
                     }
                 />
-            </Grid>
-            <Grid item xs={6} >
+            </GridItem>
+            <GridItem xs={6}>
                 <PrimaryButton
                     onClick={submitHandler}
                     disabled={determineDisabled()}
+                    alignment="right"
                 >Add Drink</PrimaryButton>
-            </Grid>
-            <Grid item xs={12}>
+            </GridItem>
+            <GridItem xs={12}>
                 <Input
                     elementType="textarea"
                     name="description"
@@ -122,14 +125,14 @@ const DrinksForm = props => {
                         event => setDrinkDesc(event.target.value)
                     }
                 />
-            </Grid>
-            <Grid item xs={12}>
+            </GridItem>
+            <GridItem xs={12}>
                 <IngredientBuilder
                     selectedIngredients={selectedIngredients}
                     addIngredient={handleAddIngredient}
                     removeIngredient={handleRemoveIngredient}
                 />
-            </Grid>
+            </GridItem>
         </Grid>
     );
 }

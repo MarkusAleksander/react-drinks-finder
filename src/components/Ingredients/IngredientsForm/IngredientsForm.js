@@ -52,6 +52,7 @@ const IngredientsForm = props => {
                 <PrimaryButton
                     onClick={submitHandler}
                     disabled={ingredient === ""}
+                    alignment="center"
                 >Add Ingredient</PrimaryButton>
             </Grid>
         </Grid>
