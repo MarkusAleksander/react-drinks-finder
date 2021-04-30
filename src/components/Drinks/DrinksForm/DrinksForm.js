@@ -6,8 +6,8 @@ import IngredientBuilder from "./../../Ingredients/IngredientBuilder/IngredientB
 
 // * UI Components
 import PrimaryButton from "../../UI/Button/PrimaryButton";
-import Grid from '@material-ui/core/Grid';
 
+import GridContainer from './../../UI/GridContainer/GridContainer';
 import GridItem from "./../../UI/GridItem/GridItem";
 
 // * Contexts
@@ -95,7 +95,7 @@ const DrinksForm = props => {
     }
 
     return (
-        <Grid container spacing={1} component="form" onSubmit={submitHandler}>
+        <GridContainer component="form" onSubmit={submitHandler}>
             <GridItem sm={6}>
                 <Input
                     type="text"
@@ -133,7 +133,7 @@ const DrinksForm = props => {
                     removeIngredient={handleRemoveIngredient}
                 />
             </GridItem>
-        </Grid>
+        </GridContainer>
     );
 }
 

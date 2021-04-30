@@ -4,16 +4,14 @@ import React from "react";
 import DrinksFilter from "./../../components/Drinks/DrinksFilter/DrinksFilter";
 
 // * UI Components
-import Grid from "@material-ui/core/Grid";
+import PaperGridContainer from "../../components/UI/PaperGridContainer/PaperGridContainer";
 
 
 const DrinksFinder = () => {
     return (
-        <Grid container>
-            <Grid item>
-                <DrinksFilter />
-            </Grid>
-        </Grid>
+        <PaperGridContainer>
+            <DrinksFilter md={6} />
+        </PaperGridContainer>
     )
 }
 

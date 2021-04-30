@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 
 const PrimaryButton = props => {
     const classes = useStyles(props);
-    console.log(classes);
+
     return (
         <Button
             onClick={props.onClick}

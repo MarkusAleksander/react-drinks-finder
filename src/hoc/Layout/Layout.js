@@ -2,15 +2,16 @@ import React from "react";
 
 // * UI Components
 import Container from "@material-ui/core/Container";
-import GridContainer from './../../components/UI/GridContainer/GridContainer';
+import Appbar from "../../components/UI/Appbar/Appbar";
 
 const Layout = (props) => {
     return (
-        <Container fixed>
-            <GridContainer>
+        <>
+            <Appbar />
+            <Container fixed>
                 {props.children}
-            </GridContainer>
-        </Container>
+            </Container>
+        </>
     );
 }
 

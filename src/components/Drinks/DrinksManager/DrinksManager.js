@@ -4,7 +4,10 @@ import React, { useContext } from "react";
 import DrinksForm from "../DrinksForm/DrinksForm";
 import DrinksList from "../DrinksList/DrinksList";
 
-import Grid from "@material-ui/core/Grid";
+// * UI Components
+import GridContainer from './../../UI/GridContainer/GridContainer';
+import GridItem from "./../../UI/GridItem/GridItem";
+
 import Divider from "@material-ui/core/Divider";
 
 // * Contexts
@@ -14,20 +17,20 @@ const DrinksManager = props => {
     const drinksContext = useContext(DrinkContext);
 
     return (
-        <Grid container spacing={1}>
-            <Grid item xs={12}>
+        <GridContainer>
+            <GridItem>
                 <DrinksForm />
-            </Grid>
-            <Grid item xs={12}>
+            </GridItem>
+            <GridItem>
                 <Divider />
-            </Grid>
-            <Grid item xs={12}>
+            </GridItem>
+            <GridItem>
                 <DrinksList
                     drinks={drinksContext.drinks}
                     onRemove={drinksContext.removeDrink}
                 />
-            </Grid>
-        </Grid>
+            </GridItem>
+        </GridContainer>
     )
 }
 

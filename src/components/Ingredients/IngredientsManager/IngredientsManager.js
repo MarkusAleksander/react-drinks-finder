@@ -4,7 +4,9 @@ import React, { useContext } from "react";
 import IngredientsForm from "../IngredientsForm/IngredientsForm";
 import IngredientList from "../IngredientsList/IngredientsList";
 
-import Grid from "@material-ui/core/Grid";
+// * UI Components
+import GridContainer from './../../UI/GridContainer/GridContainer';
+import GridItem from "./../../UI/GridItem/GridItem";
 
 // * Contexts
 import { IngredientContext } from "./../../../context/ingredients-context";
@@ -13,17 +15,17 @@ const IngredientsManager = props => {
     const ingredientsContext = useContext(IngredientContext);
 
     return (
-        <Grid container spacing={1}>
-            <Grid item xs={12}>
+        <GridContainer>
+            <GridItem>
                 <IngredientsForm />
-            </Grid>
-            <Grid item xs={12}>
+            </GridItem>
+            <GridItem>
                 <IngredientList
                     ingredients={ingredientsContext.ingredients}
                     onRemove={ingredientsContext.removeIngredient}
                 />
-            </Grid>
-        </Grid>
+            </GridItem>
+        </GridContainer>
 
     )
 }

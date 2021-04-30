@@ -4,9 +4,8 @@ import React, { useContext } from "react";
 import DrinkItem from "./../DrinkItem/DrinkItem";
 
 // * UI Components
-// import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
-import Grid from '@material-ui/core/Grid';
+import GridContainer from './../../UI/GridContainer/GridContainer';
+import GridItem from "./../../UI/GridItem/GridItem";
 
 // * Contexts
 import { DrinkContext } from "./../../../context/drinks-context";
@@ -23,11 +22,10 @@ const DrinksList = props => {
                     ? <p>Loading Drinks...</p>
                     : <>
                         {drinksContext.isLoading && <p>Updating drinks...</p>}
-                        <Grid container spacing={2}>
+                        <GridContainer>
                             {props.drinks && props.drinks.map(drink => {
                                 return (
-                                    <Grid
-                                        item
+                                    <GridItem
                                         xs={12}
                                         sm={6}
                                         lg={4}
@@ -37,10 +35,10 @@ const DrinksList = props => {
                                             drink={drink}
                                             onRemove={props.onRemove}
                                         />
-                                    </Grid>
+                                    </GridItem>
                                 )
                             })}
-                        </Grid>
+                        </GridContainer>
                     </>
             }
         </>

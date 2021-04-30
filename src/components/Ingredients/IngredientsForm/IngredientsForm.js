@@ -5,7 +5,8 @@ import Input from "../../UI/Input/Input";
 
 // * UI Components
 import PrimaryButton from "../../UI/Button/PrimaryButton";
-import Grid from "@material-ui/core/Grid";
+import GridContainer from './../../UI/GridContainer/GridContainer';
+import GridItem from "./../../UI/GridItem/GridItem";
 
 // * Contexts
 import { IngredientContext } from "./../../../context/ingredients-context";
@@ -35,8 +36,8 @@ const IngredientsForm = props => {
     }
 
     return (
-        <Grid container spacing={1} component="form" onSubmit={submitHandler}>
-            <Grid item xs={12}>
+        <GridContainer component="form" onSubmit={submitHandler}>
+            <GridItem xs={12}>
                 <Input
                     type="text"
                     elementType="input"
@@ -47,15 +48,15 @@ const IngredientsForm = props => {
                         event => setIngredient(event.target.value)
                     }
                 />
-            </Grid>
-            <Grid item xs={12}>
+            </GridItem>
+            <GridItem xs={12}>
                 <PrimaryButton
                     onClick={submitHandler}
                     disabled={ingredient === ""}
                     alignment="center"
                 >Add Ingredient</PrimaryButton>
-            </Grid>
-        </Grid>
+            </GridItem>
+        </GridContainer>
     );
 }
 

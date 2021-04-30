@@ -7,7 +7,8 @@ import Input from "./../../UI/Input/Input";
 
 // * UI Components
 import PrimaryButton from '../../UI/Button/PrimaryButton';
-import Grid from '@material-ui/core/Grid';
+import GridContainer from './../../UI/GridContainer/GridContainer';
+import GridItem from "./../../UI/GridItem/GridItem";
 
 // * Configs
 import selectableMeasurements from "./../../../config/measurements";
@@ -86,20 +87,20 @@ const IngredientBuilder = props => {
     }
 
     return (
-        <Grid container spacing={1}>
-            <Grid item xs={12}>
+        <GridContainer>
+            <GridItem>
                 <IngredientsList
                     ingredients={props.selectedIngredients}
                     onRemove={handleRemoveIngredient}
                 />
-            </Grid>
-            <Grid item xs={12}>
+            </GridItem>
+            <GridItem md={6}>
                 <IngredientSelector
                     onSelectIngredient={onSelectIngredient}
                     excludeIdList={props.selectedIngredients.map(ing => ing.ingredient_id)}
                 />
-            </Grid>
-            <Grid item xs={12}>
+            </GridItem>
+            <GridItem md={6}>
                 <Input
                     elementType="input"
                     type="number"
@@ -108,8 +109,8 @@ const IngredientBuilder = props => {
                     onchange={onEnterQuantity}
                     labelText="Enter Quantity:"
                 />
-            </Grid>
-            <Grid item xs={12}>
+            </GridItem>
+            <GridItem md={6}>
                 <Input
                     elementType="select"
                     name="measurement"
@@ -118,15 +119,15 @@ const IngredientBuilder = props => {
                     options={selectableMeasurements}
                     labelText="Select ingredient measurement"
                 />
-            </Grid>
-            <Grid item xs={12}>
+            </GridItem>
+            <GridItem md={6}>
                 <PrimaryButton
                     onClick={handleAddIngredient}
                     disabled={determineDisabled()}
                     alignment="center"
                 >Add</PrimaryButton>
-            </Grid>
-        </Grid>
+            </GridItem>
+        </GridContainer>
     )
 }
 
