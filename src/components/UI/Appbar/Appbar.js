@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useLocation } from "react-router-dom";
+
 import SideDrawer from "../SideDrawer/SideDrawer";
 import Navigation from "../../Navigation/Navigation";
 
@@ -19,6 +21,23 @@ const useStyles = makeStyles((theme) => ({
 const Appbar = props => {
     const classes = useStyles();
 
+    let location = useLocation();
+
+    const getPageTitle = () => {
+        switch (location.pathname) {
+            case "/":
+                return "Home";
+            case "/drinks-builder":
+                return "Drinks Builder";
+            case "/register":
+                return "Register";
+            case "/login":
+                return "Login"
+            default:
+                return location.pathname;
+        }
+    }
+
     return (
         <>
             <AppBar position="fixed">
@@ -26,9 +45,7 @@ const Appbar = props => {
                     <SideDrawer>
                         <Navigation />
                     </SideDrawer>
-                    <Typography variant="h6" className={classes.title}>
-                        News
-                </Typography>
+                    <Typography variant="h6" className={classes.title}>{getPageTitle()}</Typography>
                     <Button color="inherit">Login</Button>
                     <Button color="inherit">Register</Button>
                 </Toolbar>

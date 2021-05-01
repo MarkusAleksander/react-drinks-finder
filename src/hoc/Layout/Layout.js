@@ -8,7 +8,7 @@ const Layout = (props) => {
     return (
         <>
             <Appbar />
-            <Container fixed>
+            <Container fixed >
                 {props.children}
             </Container>
         </>

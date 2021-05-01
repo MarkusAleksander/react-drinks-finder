@@ -17,10 +17,9 @@ const SideDrawer = props => {
             <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleSideDrawer}>
                 <MenuIcon />
             </IconButton>
-            <Drawer anchor={"left"} open={isOpen} onClose={toggleSideDrawer}>
-                {
-                    props.children
-                }
+            {/* * could improve the double clicking */}
+            <Drawer anchor={"left"} open={isOpen} onClose={toggleSideDrawer} onClick={toggleSideDrawer}>
+                {props.children}
             </Drawer>
         </>
     );

@@ -10,8 +10,8 @@ import PaperGridContainer from "../../components/UI/PaperGridContainer/PaperGrid
 const DrinksBuilder = () => {
     return (
         <PaperGridContainer>
-            <IngredientsManager md={4} />
-            <DrinksManager md={8} />
+            <IngredientsManager sm={6} md={4} />
+            <DrinksManager sm={6} md={8} />
         </PaperGridContainer>
     )
 }
